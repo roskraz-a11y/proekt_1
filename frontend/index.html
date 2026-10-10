@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проект 1</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Финансовый маршрут</title>
+  <link rel="stylesheet" href="frontend/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Добро пожаловать в Проект 1</h1>
-            <p>Веб-приложение на чистом JavaScript и PHP</p>
-        </header>
-        <main>
-            <section class="content">
-                <h2>Начало работы</h2>
-                <p>Это ваше веб-приложение без зависимостей.</p>
-                <div id="api-section">
-                    <h3>Тест API</h3>
-                    <button id="test-btn">Получить данные с сервера</button>
-                    <div id="response" class="response-box"></div>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2026 Проект 1. Все права защищены.</p>
-        </footer>
-    </div>
-    <script src="js/api.js"></script>
-    <script src="js/main.js"></script>
+  <main class="app-shell">
+    <aside class="sidebar" aria-label="Основная навигация">
+      <a class="brand" href="#top"><span class="brand-mark">↗</span><span>Финансовый<br>маршрут</span></a>
+      <nav class="nav-list">
+        <a class="nav-item active" href="#top">◈ Обзор</a>
+        <a class="nav-item" href="#tasks">✓ Задания</a>
+        <a class="nav-item" href="#content">✦ Контент-план</a>
+        <a class="nav-item" href="#wallet">▣ Кошелёк</a>
+      </nav>
+      <div class="side-note"><span class="pulse"></span> Локальный режим<br><small>Данные хранятся в сессии PHP</small></div>
+    </aside>
+
+    <section class="workspace" id="top">
+      <header class="topbar">
+        <div><p class="eyebrow">ЛИЧНАЯ СИСТЕМА РОСТА</p><h1>Добрый день, <span id="user-name">друг</span></h1></div>
+        <div class="header-actions"><button class="icon-button" id="theme-toggle" type="button" aria-label="Переключить тему">☼</button><div class="avatar">М</div></div>
+      </header>
+
+      <section class="hero-card">
+        <div><p class="eyebrow accent">ФОКУС НА СЕГОДНЯ</p><h2>Один завершённый шаг<br>ближе к первым доходам.</h2><p class="muted">Начните с небольшого действия: подготовьте полезный материал, отправьте его на проверку и сохраните результат.</p><a class="primary-button" href="#tasks">Открыть задания <span>→</span></a></div>
+        <div class="hero-orbit" aria-hidden="true"><div class="orbit-core">+<strong id="hero-points">0</strong><small>баллов</small></div></div>
+      </section>
+
+      <section class="metrics" aria-label="Статистика">
+        <article class="metric-card"><span class="metric-icon blue">◉</span><div><p>Баланс</p><strong><span id="wallet-balance">0</span> <small>баллов</small></strong></div></article>
+        <article class="metric-card"><span class="metric-icon orange">✓</span><div><p>Выполнено</p><strong id="completed-count">0 <small>заданий</small></strong></div></article>
+        <article class="metric-card"><span class="metric-icon green">↗</span><div><p>Серия</p><strong id="streak-count">0 <small>дней</small></strong></div></article>
+      </section>
+
+      <section class="section-heading" id="tasks"><div><p class="eyebrow">БЛОК-ИГРА</p><h2>Задания на сегодня</h2></div><button class="text-button" id="add-task-button" type="button">+ Своё задание</button></section>
+      <div class="task-grid" id="task-list" aria-live="polite"></div>
+
+      <section class="lower-grid">
+        <article class="panel" id="content"><div class="panel-title"><div><p class="eyebrow">КОНТЕНТ-КОНВЕЙЕР</p><h2>Новый материал</h2></div><span class="status-label" id="draft-status">Черновик</span></div>
+          <form id="content-form"><label>Рабочее название<input name="title" maxlength="120" placeholder="Например: 5 способов сократить расходы" required></label><label>Канал<select name="channel"><option>Дзен — статья с фото</option><option>YouTube — длинное видео</option><option>YouTube — короткое видео</option></select></label><button class="primary-button" type="submit">Сохранить идею <span>→</span></button></form>
+        </article>
+        <article class="panel wallet-panel" id="wallet"><p class="eyebrow">КОШЕЛЁК</p><h2>История баллов</h2><ul class="transaction-list" id="transaction-list"></ul><p class="hint">Баллы — внутренняя мотивационная единица, не деньги и не обещание дохода.</p></article>
+      </section>
+    </section>
+  </main>
+  <dialog id="task-dialog"><form method="dialog" id="task-form"><button class="close-button" value="cancel" aria-label="Закрыть">×</button><p class="eyebrow">НОВОЕ ЗАДАНИЕ</p><h2>Добавить свой шаг</h2><label>Название<input name="title" maxlength="100" required placeholder="Что вы сделаете сегодня?"></label><label>Награда, баллы<input name="points" type="number" min="1" max="1000" value="20" required></label><menu><button value="cancel" class="secondary-button">Отмена</button><button class="primary-button" value="default">Создать</button></menu></form></dialog>
+  <script src="frontend/js/api.js"></script><script src="frontend/js/main.js"></script>
 </body>
 </html>
